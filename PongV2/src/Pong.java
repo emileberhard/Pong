@@ -11,7 +11,9 @@ public class Pong extends Applet implements Runnable, KeyListener{
 	
 	Thread thread;
 	
-	// test för sync
+	// test för syncen 
+	
+	// branch?
 	
 	public void init() {
 		this.resize(WIDTH, HEIGHT);
