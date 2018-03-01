@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class HumanPaddle implements Paddle{
@@ -13,18 +14,27 @@ public class HumanPaddle implements Paddle{
 		y = HEIGHT/2 - paddleHeight/2;
 		yVel = 0;
 		if(player == 1) {
-			x = 30;
+			x = 50;
 		}
 		else
-			x = 660;
+			x = WIDTH - 50 - paddleWidth;
 	}
 	
 	public void draw(Graphics g) {
-		
+		g.setColor(Color.green);
+		g.fillRect(x, (int)y, paddleWidth, paddleHeight);
 	}
 
 	public void move() {
 		
+	}
+	
+	public void setUpAccel(Boolean input) {
+		upAccel = input;
+	}
+	
+	public void setDownAccel(Boolean input) {
+		downAccel = input;
 	}
 
 	public int getY() {

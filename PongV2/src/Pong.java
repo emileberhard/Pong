@@ -11,10 +11,13 @@ public class Pong extends Applet implements Runnable, KeyListener{
 	
 	Thread thread;
 	
+	HumanPaddle p1;
+	
 	public void init() {
 		this.resize(WIDTH, HEIGHT);
-		
 		this.addKeyListener(this);
+		
+		p1 = new HumanPaddle(1);
 		
 		thread = new Thread(this);
 		thread.start();
@@ -24,8 +27,7 @@ public class Pong extends Applet implements Runnable, KeyListener{
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		g.setColor(Color.green);
-		g.fillRect(30, HEIGHT/2-paddleHeight/2, paddleWidth, paddleHeight);
+		p1.draw(g);
 	}
 	
 	public void update(Graphics g) {
