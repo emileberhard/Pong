@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Pong extends Applet implements Runnable, KeyListener{
+public class Pong extends Applet implements Runnable, KeyListener {
 	
 	final int WIDTH = 1000, HEIGHT = 550;
 	final int paddleWidth = 20, paddleHeight = 100;
@@ -16,6 +16,7 @@ public class Pong extends Applet implements Runnable, KeyListener{
 	public void init() {
 		this.resize(WIDTH, HEIGHT);
 		this.addKeyListener(this);
+		this.setFocusable(true);
 		
 		p1 = new HumanPaddle(1);
 		
@@ -37,10 +38,10 @@ public class Pong extends Applet implements Runnable, KeyListener{
 	public void run() {
 		for(;;) {
 			
-			
+			p1.move();
 			
 			repaint();
-			
+						
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
@@ -51,13 +52,12 @@ public class Pong extends Applet implements Runnable, KeyListener{
 
 
 	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
 		
-		if(key == KeyEvent.VK_UP) {
-			
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			p1.setUpAccel(true);
 		}
-		if(key == KeyEvent.VK_DOWN) {
-			
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			p1.setDownAccel(true);
 		}
 	}
 
@@ -65,10 +65,10 @@ public class Pong extends Applet implements Runnable, KeyListener{
 		int key = e.getKeyCode();
 		
 		if(key == KeyEvent.VK_UP) {
-			
+			p1.setUpAccel(false);
 		}
 		if(key == KeyEvent.VK_DOWN) {
-			
+			p1.setDownAccel(false);
 		}
 	}
 	
