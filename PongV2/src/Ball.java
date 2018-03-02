@@ -1,18 +1,27 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Ball {
 	final int WIDTH = 1000, HEIGHT = 550;
 	final int paddleWidth = 20, paddleHeight = 100;
 	final int ballWidth = 20, ballHeight = 20;
+	Random r = new Random();
 	
 	double xVel, yVel, x, y;
+	int direction = r.nextInt(2);
 	
 	public Ball() {
 		x = WIDTH/2;
 		y = HEIGHT/2;
-		xVel = -2;
-		yVel = 3;
+		System.out.println(direction);
+		
+		if(direction == 0) {
+			xVel = 2 + (10 * r.nextDouble());
+		}else if(direction == 1) {
+			xVel = -2 + (-10 * r.nextDouble());
+		}
+		yVel = 2 + (7 * r.nextDouble());
 	}
 	
 	public void draw(Graphics g) {
@@ -45,6 +54,37 @@ public class Ball {
 				xVel = -xVel;
 			}
 		}
+	}
+	
+	public boolean p1ScoreBool(Ball b1) {
+		if(b1.getX() > WIDTH) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public boolean p2ScoreBool(Ball b1) {
+		if(b1.getX() + ballWidth/2 < 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void reset() {
+		x = WIDTH/2;
+		y = HEIGHT/2;
+		direction = r.nextInt(2);
+		
+		if(direction == 0) {
+			xVel = 2 + (10 * r.nextDouble());
+		}else if(direction == 1) {
+			xVel = -2 + (-10 * r.nextDouble());
+		}
+		
+		yVel = 2 + (7 * r.nextDouble());
 	}
 	
 	public int getX() {
