@@ -11,8 +11,8 @@ public class Ball {
 	public Ball() {
 		x = WIDTH/2;
 		y = HEIGHT/2;
-		xVel = -4;
-		yVel = 5;
+		xVel = -2;
+		yVel = 3;
 	}
 	
 	public void draw(Graphics g) {
@@ -34,14 +34,14 @@ public class Ball {
 		}
 	}
 	
-	public void checkCollision(Paddle p1) {
+	public void checkCollision(Paddle p1, Paddle p2) {
 		if(x <= 50 + paddleWidth + 10) {
 			if(p1.getY() <= y && p1.getY() + paddleHeight >= y) {
 				xVel = -xVel;
 			}
 		}
 		else if(x >= WIDTH - 50 - paddleWidth - 10) {
-			if(p1.getY() <= y && p1.getY() + paddleHeight >= y) {
+			if(p2.getY() <= y && p2.getY() + paddleHeight >= y) {
 				xVel = -xVel;
 			}
 		}
